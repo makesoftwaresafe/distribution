@@ -21,15 +21,15 @@ that certain layers no longer exist on the filesystem.
 
 Filesystem layers are stored by their content address in the Registry. This
 has many advantages, one of which is that data is stored once and referred to by manifests.
-See [here](../compatibility#content-addressable-storage-cas) for more details.
+See [here](compatibility.md#content-addressable-storage-cas) for more details.
 
 Layers are therefore shared amongst manifests; each manifest maintains a reference
 to the layer. As long as a layer is referenced by one manifest, it cannot be garbage
 collected.
 
 Manifests and layers can be `deleted` with the registry API (refer to the API
-documentation [here](/spec/api#deleting-a-layer) and
-[here](/spec/api#deleting-an-image) for details). This API removes references
+documentation [here](../spec/api.md#deleting-a-layer) and
+[here](../spec/api.md#deleting-an-image) for details). This API removes references
 to the target and makes them eligible for garbage collection. It also makes them
 unable to be read via the API.
 
@@ -90,7 +90,7 @@ This type of garbage collection is known as stop-the-world garbage collection.
 
 Garbage collection can be run as follows
 
-`bin/registry garbage-collect [--dry-run] /path/to/config.yml`
+`bin/registry garbage-collect [--dry-run] [--delete-untagged] [--quiet] /path/to/config.yml`
 
 The garbage-collect command accepts a `--dry-run` parameter, which prints the progress
 of the mark and sweep phases without removing any data. Running with a log level of `info`
@@ -122,3 +122,8 @@ blob eligible for deletion: sha256:87192bdbe00f8f2a62527f36bb4c7c7f4eaf9307e4b87
 blob eligible for deletion: sha256:b549a9959a664038fc35c155a95742cf12297672ca0ae35735ec027d55bf4e97
 blob eligible for deletion: sha256:f251d679a7c61455f06d793e43c06786d7766c88b8c24edf242b2c08e3c3f599
 ```
+
+The `--delete-untagged` option can be used to delete manifests that are not currently referenced by a tag.
+
+The `--quiet` option suppresses any output from being printed.
+

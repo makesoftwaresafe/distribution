@@ -17,7 +17,7 @@ mechanism fronting their internal http portal.
 
 If you just want authentication for your registry, and are happy maintaining
 users access separately, you should really consider sticking with the native
-[basic auth registry feature](/about/deploying#native-basic-auth).
+[basic auth registry feature](../about/deploying.md#native-basic-auth).
 
 ### Solution
 
@@ -166,8 +166,6 @@ Review the [requirements](../#requirements), then follow these steps.
 5. Create the compose file. Paste the following YAML into a new file called `docker-compose.yml`.
 
    ```yaml
-   version: "3"
-
    services:
        nginx:
          # Note : Only nginx:alpine supports bcrypt.
@@ -193,7 +191,7 @@ Review the [requirements](../#requirements), then follow these steps.
 Now, start your stack:
 
 ```consonle
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 Login with a "push" authorized user (using `testuser` and `testpassword`), then
