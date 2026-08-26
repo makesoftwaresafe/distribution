@@ -28,7 +28,7 @@ import (
 	"github.com/distribution/distribution/v3/internal/dcontext"
 	_ "github.com/distribution/distribution/v3/registry/storage/driver/inmemory"
 	"github.com/sirupsen/logrus"
-	"gopkg.in/yaml.v2"
+	"go.yaml.in/yaml/v2"
 )
 
 // Tests to ensure nextProtos returns the correct protocols when:
@@ -149,7 +149,7 @@ func TestGracefulShutdown(t *testing.T) {
 	// Wait for some unknown random time for server to start listening
 	time.Sleep(3 * time.Second)
 
-	//Establish connection
+	// Establish connection
 	conn, err := net.Dial("tcp", "localhost:5000")
 	if err != nil {
 		t.Fatal(err)
